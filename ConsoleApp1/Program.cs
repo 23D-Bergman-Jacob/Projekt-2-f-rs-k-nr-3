@@ -1,7 +1,7 @@
 ﻿using System.Runtime.ConstrainedExecution;
 using System.Runtime.Serialization;
 Random rnd = new Random();
-List<List<int>> hiddenNumber = new List<List<int>>(); 
+List<List<int>> hiddenNumber = new List<List<int>>();
 // här är "undersidan av kortet" så att säga alltså svaret
 List<List<int>> guessedNumber = new List<List<int>>();
 // här äe vad spelaren ser.
@@ -72,15 +72,15 @@ void Logic()
     {
         for (int y = 0; y < grid; y++)
         {
-// skapar y axel värderna
+            // skapar y axel värderna
             while (true)
             {
                 reapeater = 0;
-                testNumber = rnd.Next(1, (grid * grid / 2)+1);
-// ser till så att det finns rätt antal med tal på undersidan av kortet sedan genererar den ett värde 
+                testNumber = rnd.Next(1, (grid * grid / 2) + 1);
+                // ser till så att det finns rätt antal med tal på undersidan av kortet sedan genererar den ett värde 
                 for (int xTest = 0; xTest < hiddenNumber.Count; xTest++)
                 {
-// checkar för att se att värdet inte finns ngn annan stans i listan eller i ngnm annan lista
+                    // checkar för att se att värdet inte finns ngn annan stans i listan eller i ngnm annan lista
                     for (int yTest = 0; yTest < hiddenNumber[xTest].Count; yTest++)
                     {
                         if (hiddenNumber[xTest][yTest] == testNumber)
@@ -104,8 +104,6 @@ void Logic()
                 hiddenNumber[hiddenNumber.Count - 1].Add(testNumber);
                 // lägger in talet i rätt lista
             }
-
-
         }
     }
 }
@@ -142,7 +140,6 @@ void Guessing()
     while (true)
     {
         int reapeater = 0;
-
         System.Console.WriteLine("Tja, vilket tal vill du gissa? Skriv x kordinaten först");
         bool loop1 = false;
         // ser till att du skriver ett tal in
@@ -199,32 +196,30 @@ void Guessing()
 }
 void Checker()
 {
-    if (hiddenNumber[guessesX[guessesX.Count - 1]-1][guessesY[guessesY.Count - 1]-1] != hiddenNumber[guessesX[guessesX.Count - 2]-1][guessesY[guessesY.Count - 2]-1])
+    if (hiddenNumber[guessesX[guessesX.Count - 1] - 1][guessesY[guessesY.Count - 1] - 1] != hiddenNumber[guessesX[guessesX.Count - 2] - 1][guessesY[guessesY.Count - 2] - 1])
     {
         // checkar ifall du har gissat rätt ifall det är fel tar den bort gissningen  från både guesses så du kan gissa det igen och från det synliga kordinatsystemet.
-        guessedNumber[guessesX[guessesX.Count-1]-1][guessesY[guessesY.Count-1]-1] = 0;
-        guessedNumber[guessesX[guessesX.Count-2]-1][guessesY[guessesY.Count-2]-1] = 0;
+        guessedNumber[guessesX[guessesX.Count - 1] - 1][guessesY[guessesY.Count - 1] - 1] = 0;
+        guessedNumber[guessesX[guessesX.Count - 2] - 1][guessesY[guessesY.Count - 2] - 1] = 0;
 
-if (guessesY.Count >= 2)
-{
-    guessesY.RemoveAt(guessesY.Count - 1);
-    guessesY.RemoveAt(guessesY.Count - 1);
-}
-else if (guessesY.Count == 1)
-{
-    guessesY.RemoveAt(0);
-}
-if (guessesX.Count >= 2)
-{
-    guessesX.RemoveAt(guessesX.Count - 1);
-    guessesX.RemoveAt(guessesX.Count - 1);
-}
-else if (guessesX.Count == 1)
-{
-    guessesX.RemoveAt(0);
-}
-
-    
-    Console.Clear();
-}
+        if (guessesY.Count >= 2)
+        {
+            guessesY.RemoveAt(guessesY.Count - 1);
+            guessesY.RemoveAt(guessesY.Count - 1);
+        }
+        else if (guessesY.Count == 1)
+        {
+            guessesY.RemoveAt(0);
+        }
+        if (guessesX.Count >= 2)
+        {
+            guessesX.RemoveAt(guessesX.Count - 1);
+            guessesX.RemoveAt(guessesX.Count - 1);
+        }
+        else if (guessesX.Count == 1)
+        {
+            guessesX.RemoveAt(0);
+        }
+        Console.Clear();
+    }
 }
